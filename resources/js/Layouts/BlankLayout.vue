@@ -1,12 +1,8 @@
-<script setup>
-import Navigation from '@/Components/Layout/Navigation.vue';
-</script>
+<script setup></script>
 
 <template>
     <div>
         <div class="min-h-screen bg-gray-100">
-            <Navigation />
-
             <main>
                 <slot />
             </main>
