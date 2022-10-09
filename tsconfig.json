@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "strict": true,
+        "sourceMap": true,
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "typeRoots": [
+            "node_modules/@types",
+        ],
+        "types": [
+            "unplugin-vue-define-options/macros-global",
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["resources/js/*"],
+            "ziggy/*": ["vendor/tightenco/ziggy/dist/*"],
+        }
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
