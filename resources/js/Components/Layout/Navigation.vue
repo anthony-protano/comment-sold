@@ -19,7 +19,7 @@ const logout = () => {
             <div class="flex justify-between h-16">
                 <div class="flex">
                     <div class="hidden space-x-8 sm:-my-px sm:flex">
-                        <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                        <NavLink :href="route('dashboard.index')" :active="route().current('dashboard.index')">
                             Dashboard
                         </NavLink>
                     </div>
@@ -108,7 +108,7 @@ const logout = () => {
         <!-- Responsive Navigation Menu -->
         <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
             <div class="pt-2 pb-3 space-y-1">
-                <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                <ResponsiveNavLink :href="route('dashboard.index')" :active="route().current('dashboard.index')">
                     Dashboard
                 </ResponsiveNavLink>
             </div>

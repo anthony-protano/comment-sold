@@ -186,6 +186,13 @@ return [
          * Package Service Providers...
          */
 
+        /**
+         * Domain Service Providers
+         */
+        \App\Products\ProductsServiceProvider::class,
+        \App\Inventory\InventoryServiceProvider::class,
+        \App\Dashboard\DashboardServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
