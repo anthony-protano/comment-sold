@@ -2,7 +2,6 @@
 
 import './bootstrap';
 import '../css/app.css';
-import '@jobinsjp/vue3-datatable/dist/style.css';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
