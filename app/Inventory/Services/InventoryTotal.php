@@ -2,18 +2,11 @@
 
 namespace App\Inventory\Services;
 
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Support\Facades\Auth;
+use App\Core\Services\AbstractTenantServiceClass;
 use Illuminate\Support\Facades\Cache;
 
-class InventoryTotal
+class InventoryTotal extends AbstractTenantServiceClass
 {
-    public function __construct(
-        public Authenticatable $user,
-    ) {
-        $this->user = Auth::user();
-    }
-
     public function total(): int
     {
         return Cache::remember("{$this->user->id}_inventory_total", config('cache.seconds'), function () {

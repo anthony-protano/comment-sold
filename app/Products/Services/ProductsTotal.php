@@ -2,18 +2,11 @@
 
 namespace App\Products\Services;
 
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Support\Facades\Auth;
+use App\Core\Services\AbstractTenantServiceClass;
 use Illuminate\Support\Facades\Cache;
 
-class ProductsTotal
+class ProductsTotal extends AbstractTenantServiceClass
 {
-    public function __construct(
-        public Authenticatable $user,
-    ) {
-        $this->user = Auth::user();
-    }
-
     public function total(): int
     {
         return Cache::remember("{$this->user->id}_products_total", config('cache.seconds'), function () {

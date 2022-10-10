@@ -11,9 +11,9 @@ class Inventory extends Model
 
     protected $guarded = ['id'];
 
-    public function product(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function product(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(Product::class);
     }
 
     public function order(): \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -26,7 +26,8 @@ const inventory_total = computed(() => usePage().props.value.inventory_total);
             <template #right>
                 <PrimaryButton
                     :href="route('products.index')"
-                    title="View products" link>
+                    title="View products"
+                    link>
                     View Products
                 </PrimaryButton>
             </template>
@@ -44,7 +45,8 @@ const inventory_total = computed(() => usePage().props.value.inventory_total);
             <template #right>
                 <PrimaryButton
                     :href="route('inventory.index')"
-                    title="View products" link>
+                    title="View products"
+                    link>
                     View Inventory
                 </PrimaryButton>
             </template>

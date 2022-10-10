@@ -30,7 +30,7 @@ const buttonClass = 'inline-flex items-center px-4 py-2 bg-gray-800 ' +
         <slot />
     </button>
 
-    <Link :class="buttonClass">
+    <Link :href="href" :title="title" :class="buttonClass">
         <slot />
     </Link>
 </template>
