@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Inventory;
+use App\Models\Order;
+use App\Models\Product;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -22,7 +25,7 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'name' => $this->faker->name(),
@@ -30,6 +33,16 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'superadmin' => false,
+            'shop_name' => $this->faker->company(),
+            'card_brand' => 'VISA',
+            'card_last_four' => '0000',
+            'trial_ends_at' => $this->faker->dateTime(),
+            'shop_domain' => '#',
+            'is_enabled' => true,
+            'billing_plan' => '1235412',
+            'trial_starts_at' => $this->faker->dateTime(),
+            'profile_photo_path' => '#',
         ];
     }
 
@@ -48,22 +61,19 @@ class UserFactory extends Factory
     }
 
     /**
-     * Indicate that the user should have a personal team.
+     * Attaches store data to the user
      *
-     * @return $this
+     * @return UserFactory
      */
-    public function withPersonalTeam()
+    public function withStoreData(): UserFactory
     {
-        if (! Features::hasTeamFeatures()) {
-            return $this->state([]);
-        }
-
-        return $this->has(
-            Team::factory()
-                ->state(function (array $attributes, User $user) {
-                    return ['name' => $user->name.'\'s Team', 'user_id' => $user->id, 'personal_team' => true];
-                }),
-            'ownedTeams'
-        );
+        return $this
+            ->has(
+                Product::factory()->count(2)
+                    ->has(
+                        Inventory::factory()->count(4)
+                            ->has(Order::factory()->count(8))
+                    )
+            );
     }
 }
