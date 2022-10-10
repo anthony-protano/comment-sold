@@ -33,7 +33,7 @@ const inventory_total = computed(() => usePage().props.value.inventory_total);
             </template>
 
             <template #total>
-                {{ products_total }}
+                {{ products_total ?? 0 }}
             </template>
         </TotalWidget>
 
@@ -52,7 +52,7 @@ const inventory_total = computed(() => usePage().props.value.inventory_total);
             </template>
 
             <template #total>
-                {{ inventory_total }}
+                {{ inventory_total ?? 0 }}
             </template>
         </TotalWidget>
     </section>
