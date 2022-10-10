@@ -44,4 +44,9 @@ class User extends Authenticatable
     {
         return $this->hasManyThrough(Inventory::class, Product::class);
     }
+
+    public function getProfilePhotoUrlAttribute()
+    {
+        return $this->profile_photo_path;
+    }
 }
