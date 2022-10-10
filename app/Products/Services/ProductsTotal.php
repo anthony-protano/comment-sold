@@ -2,10 +2,10 @@
 
 namespace App\Products\Services;
 
-use App\Core\Services\AbstractTenantServiceClass;
+use App\Core\Services\AbstractTenantService;
 use Illuminate\Support\Facades\Cache;
 
-class ProductsTotal extends AbstractTenantServiceClass
+class ProductsTotal extends AbstractTenantService
 {
     public function total(): int
     {

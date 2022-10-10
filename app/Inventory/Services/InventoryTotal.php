@@ -2,10 +2,10 @@
 
 namespace App\Inventory\Services;
 
-use App\Core\Services\AbstractTenantServiceClass;
+use App\Core\Services\AbstractTenantService;
 use Illuminate\Support\Facades\Cache;
 
-class InventoryTotal extends AbstractTenantServiceClass
+class InventoryTotal extends AbstractTenantService
 {
     public function total(): int
     {

@@ -5,7 +5,7 @@ namespace App\Core\Services;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
 
-abstract class AbstractTenantServiceClass
+abstract class AbstractTenantService
 {
     public function __construct(
         public Authenticatable $user,

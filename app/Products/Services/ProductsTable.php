@@ -2,36 +2,38 @@
 
 namespace App\Products\Services;
 
-use App\Core\Services\AbstractTenantServiceClass;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Core\Services\AbstractTenantService;
+use App\Models\Inventory;
+use App\Models\Product;
+use Illuminate\Http\Request;
+use ProtoneMedia\LaravelQueryBuilderInertiaJs\InertiaTable;
+use Spatie\QueryBuilder\QueryBuilder;
 
-class ProductsTable extends AbstractTenantServiceClass
+class ProductsTable extends AbstractTenantService
 {
     /**
      * Returns the products in table format
      */
-    public function toTable(): Collection
+    public function toTable(InertiaTable $table): InertiaTable
     {
-        $headers = [
-            'id',
-            'product_name',
-            'style',
-            'product_type',
-            'shipping_price'
-        ];
+        return $table
+            ->searchInput('product_name')
+            ->defaultSort('product_name')
+            ->column(key: 'product_name', searchable: true)
+            ->column(key: 'style')
+            ->column(key: 'brand')
+            ->column(label: 'skus');
 
-        return $this
-            ->user
-            ->product()
-            ->with([
-                'inventory' => fn ($item) =>
-                    $item
-                        ->select('id', 'product_id', 'sku')
-            ])
-            ->select(...$headers)
-            ->take(15)
-            ->get();
+    }
+
+    public function query(Request $request): \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    {
+        return QueryBuilder::for($this->user->product(), $request)
+            ->defaultSort('product_name')
+            ->allowedSorts(['product_name', 'style', 'brand'])
+            ->allowedFilters(['product_name'])
+            ->with('inventory')
+            ->paginate($request->input('perPage'))
+            ->withQueryString();
     }
 }

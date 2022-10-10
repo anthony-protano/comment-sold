@@ -22,6 +22,6 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
-        "@jobinsjp/vue3-datatable": "^1.0.15"
+        "@protonemedia/inertiajs-tables-laravel-query-builder": "^2.1.0"
     }
 }

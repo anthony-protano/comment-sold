@@ -1,19 +1,21 @@
 <script lang="ts" setup>
-import { computed } from "vue";
-import { usePage } from "@inertiajs/inertia-vue3";
 import PageHeader from "@/Components/UI/PageHeader.vue";
-import { DataTable, TableHead, TableBody } from '@jobinsjp/vue3-datatable';
+import { Table } from '@protonemedia/inertiajs-tables-laravel-query-builder';
 
-const table = computed(() => usePage().props.value.table);
+const props = defineProps<{
+    products: {},
+}>();
 
-const getSkus = (items) => {
+const getSkus = (items: {}) => {
     if (!items) {
         return 'N/A';
     }
 
-    return Object
+    const join = Object
         .values(items)
         .map((value) => value.sku).join(', ');
+
+    return join !== '' ? join : 'N/A';
 }
 
 </script>
@@ -26,50 +28,10 @@ const getSkus = (items) => {
     </section>
 
     <section class="container py-10">
-        <DataTable
-            :rows="table"
-            striped>
-            <template #thead>
-                <TableHead>
-                    Product Name
-                </TableHead>
-
-                <TableHead>
-                    Style
-                </TableHead>
-
-                <TableHead>
-                    Product Type
-                </TableHead>
-
-                <TableHead>
-                    Shipping Price
-                </TableHead>
-
-                <TableHead>
-                    Skus
-                </TableHead>
+        <Table :resource="products" striped>
+            <template #cell(skus)="{ item }">
+                {{ getSkus(item.inventory) }}
             </template>
-
-            <template #tbody="{ row }">
-                <TableBody v-text="row.product_name" />
-
-                <TableBody v-text="row.style" />
-
-                <TableBody v-text="row.product_type" />
-
-                <TableBody>
-                    ${{ row.human_shipping_price }}
-                </TableBody>
-
-                <TableBody>
-                    {{ getSkus(row.inventory) }}
-                </TableBody>
-            </template>
-
-            <template #empty>
-                No records found.
-            </template>
-        </DataTable>
+        </Table>
     </section>
 </template>
