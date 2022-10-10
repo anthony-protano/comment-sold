@@ -31,4 +31,19 @@ class DashboardTest extends TestCase
                 ->hasAll('products_total', 'inventory_total')
             );
     }
+
+    public function test_dashboard_view_without_data()
+    {
+        $this->actingAsSanctumUser();
+
+        User::factory()->create();
+
+        $this->get(route('dashboard.index'))
+            ->assertOk()
+            ->assertInertia(
+                fn (AssertableInertia $page) => $page
+                    ->component('Dashboard/Index')
+                    ->hasAll('products_total', 'inventory_total')
+            );
+    }
 }

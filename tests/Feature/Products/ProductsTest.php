@@ -31,4 +31,19 @@ class ProductsTest extends TestCase
                 ->hasAll('products')
             );
     }
+
+    public function test_products_view_without_data(): void
+    {
+        $this->actingAsSanctumUser();
+
+        User::factory()->create();
+
+        $this->get(route('products.index'))
+            ->assertOk()
+            ->assertInertia(
+                fn (AssertableInertia $page) => $page
+                    ->component('Products/Index')
+                    ->hasAll('products')
+            );
+    }
 }

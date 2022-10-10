@@ -31,4 +31,19 @@ class InventoryTest extends TestCase
                 ->hasAll('inventory')
             );
     }
+
+    public function test_inventory_view_without_data(): void
+    {
+        $this->actingAsSanctumUser();
+
+        User::factory()->create();
+
+        $this->get(route('inventory.index'))
+            ->assertOk()
+            ->assertInertia(
+                fn (AssertableInertia $page) => $page
+                    ->component('Inventory/Index')
+                    ->hasAll('inventory')
+            );
+    }
 }
