@@ -3,6 +3,7 @@ import PageHeader from "@/Components/UI/PageHeader.vue";
 import { Table } from '@protonemedia/inertiajs-tables-laravel-query-builder';
 
 const props = defineProps<{
+    products_total: number,
     products: {},
 }>();
 
@@ -23,7 +24,13 @@ const getSkus = (items: {}) => {
 <template>
     <section>
         <PageHeader>
-            <h1>Products</h1>
+            <h1>
+                Products -
+
+                <small class="font-normal">
+                    {{ products_total ?? 0 }} items
+                </small>
+            </h1>
         </PageHeader>
     </section>
 
