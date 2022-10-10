@@ -2,6 +2,24 @@
 
 ## Notes before viewing the application
 
+#### Time breakdown - Total 6 Hours
+
+The time I took for each feature is not exact
+
+Seeding the data took awhile, it was pretty slow at first so I took another stab at it to speed it up
+
+**Database seeding** - 1 Hour 30 Minutes (Not counting this)
+
+**Models** - 15 Minutes
+
+**Layout** - 30 Minutes
+
+**Products + Some more boilerplate** - 2 Hours
+
+**Adding pages & some refactoring** - 1 Hour 30 Minutes
+
+**Tests & Factories** - 30 Minutes
+
 #### CSV Data in the repo
 
 I would not normally have csv data like this in a repo due to size concerns (I'm assuming it's all fake data), for the sake of simplicity I included it in the repo.
