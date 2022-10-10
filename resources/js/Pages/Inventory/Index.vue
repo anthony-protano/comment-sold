@@ -12,7 +12,7 @@ const props = defineProps<{
     <section>
         <PageHeader>
             <h1>
-                Products -
+                Inventory -
 
                 <small class="font-normal">
                     {{ inventory_total }} items
