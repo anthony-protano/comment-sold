@@ -1,7 +1,5 @@
 # Comment Sold Technical Assessment
 
-## Project Overview
-
 ## Notes before viewing the application
 
 #### CSV Data in the repo
